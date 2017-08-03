@@ -8,12 +8,11 @@ $pass    = "STOP";
 $profile = "siswa";
 $comment = "{newuser}";
 
+
+$API->connectsql("localhost","root","","hotmiks");
+$API->query("SELECT * FROM admin WHERE login = 'dion'");
+
 $API = new RouterosAPI();
-$API->connect('192.168.2.1', 'dion', 'bintang');
-
-$API->sql_conn('localhost','root','','hotmiks');
-
-
 $API->comm("/ip/hotspot/user/add", array(
   "server"   => $server,
   "name"     => $nama,
