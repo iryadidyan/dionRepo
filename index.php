@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="register/demo.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="register/script.js"></script>
+<script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 <div class="form-title">Daftar kan Username</div>
 <div class="form-sub-title">Untuk bisa menggunakan Akun hotspot</div>
 
-<form id="regForm" action="act_reg.php" method="post">
+<form id="regForm" >
 
 <table>
   <tbody>
@@ -55,7 +56,7 @@
   </tr>
 	<tr>
 		<td><label for="lname">Username:</label></td>
-		<td><div class="input-container"><input name="username" id="lname" type="text" /></div></td>
+		<td><div class="input-container"><input name="username" id="username" type="text" /></div></td>
 	</tr>
   <tr>
     <td><label for="pass1">Password:</label></td>
@@ -81,9 +82,9 @@
     <td><label>Tanggal Lahir:</label></td>
     <td>
     <div class="input-container">
-    <select name="month"><option value="0">Month:</option><?=generate_options(1,12,'callback_month')?></select>
-    <select name="day"><option value="0">Day:</option><?=generate_options(1,31)?></select>
-	  <select name="year"><option value="0">Year:</option><?=generate_options(date('Y'),1900)?></select>
+    <select id="month" name="month"><option value="0">Month:</option><?=generate_options(1,12,'callback_month')?></select>
+    <select id="day" name="day"><option value="0">Day:</option><?=generate_options(1,31)?></select>
+	  <select id="year" name="year"><option value="0">Year:</option><?=generate_options(date('Y'),1900)?></select>
     </div>
     </td>
   </tr>
@@ -104,6 +105,34 @@
 </div>
 
 </div>
+
+<script type="text/javascript">
+	function check()
+	{
+		var username  = $('#username').val();
+		var password  = $('#pass1').val();
+		var repasword = $('#pass2').val();
+		var nis 			= $('#nis').val();
+		var nama  		= $('#fname').val()+" "+$('#lname').val();
+		var jurusan		= $('#jurusan').val();
+		var jk 				= $('#sex-select').val();
+		var ttl				= $('#day').val()+"/"+$('#month').val()+"/"+$('#year').val();
+		var url 			= 'act_reg.php';
+
+		if (password === repasword) {
+			$.ajax({
+				url      : url,
+				data     : 'username='+username+'&password='+password+'&nis='+nis+'&nama='+nama+'&jurusan='+jurusan+'&jk='+jk+'&ttl='+ttl,
+				type     : 'POST',
+				dataType : 'html',
+			});
+		} else {
+			alert("password / repassword tidak cocok, tolong diulangi lagi");
+		}
+
+
+	}
+</script>
 
 </body>
 </html>

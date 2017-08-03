@@ -30,23 +30,8 @@ class RouterosAPI extends mysqli
     var $error_no;          //  Variable for storing connection error number, if any
     var $error_str;         //  Variable for storing connection error text, if any
 
-    var $sql_conn;
-    var $value1;
-    var $value2;
-    var $value3;
-    var $value4;
-
 
     /* Check, can be var used in foreach  */
-
-    public function connectsql($var1,$var2,$var3,$var4)
-    {
-      $this->value1   = $var1;
-      $this->value2   = $var2;
-      $this->value3   = $var3;
-      $this->value4   = $var4;
-      $this->sql_conn = new mysqli($this->value1,$this->value2,$this->value3,$this->value4);
-    }
 
     public function isIterable($var)
     {
