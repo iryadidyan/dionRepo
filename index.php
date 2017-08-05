@@ -10,20 +10,16 @@
 <title>Registrasi Hotspot SMK MA'ARIF NU TIRTO</title>
 
 <link rel="stylesheet" type="text/css" href="register/demo.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="register/script.js"></script>
-<script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="register/script.js"></script> -->
 </head>
-
 <body>
 
 <div id="div-regForm">
-
 <div class="form-title">Daftar kan Username</div>
 <div class="form-sub-title">Untuk bisa menggunakan Akun hotspot</div>
 
-<form id="regForm" >
-
+<form id="regForm" action="act_reg.php" method="post" >
 <table>
   <tbody>
 		<tr>
@@ -64,7 +60,8 @@
   </tr>
 	<tr>
 		<td><label for="pass2">Re-Password:</label></td>
-		<td><div class="input-container"><input name="pass2" id="pass2" type="password" /></div></td>
+		<td><div class="input-container"><input name="pass2" id="pass2" type="password" /><span id='message'></span></div>
+		</td>
 	</tr>
   <tr>
     <td><label for="sex-select">I am:</label></td>
@@ -90,7 +87,7 @@
   </tr>
   <tr>
   <td>&nbsp;</td>
-  <td><input type="submit" class="greenButton" value="Sign Up" /><img id="loading" src="register/img/ajax-loader.gif" alt="working.." />
+  <td><input type="submit" id="submit" class="greenButton" value="Sign Up" /><img id="loading" onclick="register()" src="register/img/ajax-loader.gif" alt="working.." />
 </td>
   </tr>
 
@@ -107,31 +104,16 @@
 </div>
 
 <script type="text/javascript">
-	function check()
-	{
-		var username  = $('#username').val();
-		var password  = $('#pass1').val();
-		var repasword = $('#pass2').val();
-		var nis 			= $('#nis').val();
-		var nama  		= $('#fname').val()+" "+$('#lname').val();
-		var jurusan		= $('#jurusan').val();
-		var jk 				= $('#sex-select').val();
-		var ttl				= $('#day').val()+"/"+$('#month').val()+"/"+$('#year').val();
-		var url 			= 'act_reg.php';
+	$('#pass2').on('keyup', function () {
+		if ($('#pass1').val() == $('#pass2').val()) {
+				$('#pass2').css('color', 'green');
+				$('#message').html('cocok').css('color', 'red');
 
-		if (password === repasword) {
-			$.ajax({
-				url      : url,
-				data     : 'username='+username+'&password='+password+'&nis='+nis+'&nama='+nama+'&jurusan='+jurusan+'&jk='+jk+'&ttl='+ttl,
-				type     : 'POST',
-				dataType : 'html',
-			});
-		} else {
-			alert("password / repassword tidak cocok, tolong diulangi lagi");
-		}
+		} else
+				$('#pass2').css('color', 'red');
+	});
 
 
-	}
 </script>
 
 </body>
