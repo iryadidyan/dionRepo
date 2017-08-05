@@ -15,7 +15,7 @@
  *
  ******************************/
 
-class RouterosAPI extends mysqli
+class RouterosAPI
 {
     var $debug     = false; //  Show debug information
     var $connected = false; //  Connection state
@@ -25,14 +25,11 @@ class RouterosAPI extends mysqli
     var $attempts  = 5;     //  Connection attempt count
     var $delay     = 3;     //  Delay between connection attempts in seconds
 
-
     var $socket;            //  Variable for storing socket resource
     var $error_no;          //  Variable for storing connection error number, if any
     var $error_str;         //  Variable for storing connection error text, if any
 
-
     /* Check, can be var used in foreach  */
-
     public function isIterable($var)
     {
         return $var !== null
